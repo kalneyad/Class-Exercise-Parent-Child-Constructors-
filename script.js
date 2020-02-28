@@ -5,11 +5,25 @@ function game()
   this.inc_valid = true;
   this.game_element = document.createElement("div");
   this.message = document.createElement("div");
+  this.message.style.height = "40px";
+  this.message.style.width = "200px";
+  this.message.style.alignItems = "center";
+  this.message.style.justifyContent = "center";
+  this.message.style.textAlign = "center";
+  this.message.style.fontSize = "18px";
+  
   this.reset = document.createElement("div");
+  this.reset.style.height = "40px";
+  this.reset.style.width = "200px";
+  this.reset.style.alignItems = "center";
+  this.reset.style.justifyContent = "center";
+  this.reset.style.textAlign = "center";
+  this.reset.style.fontSize = "18px";
+  
   this.player_list.push(new player("JACK", 0, that));
   this.player_list.push(new player("RYAN", 0, that));
   this.reset.addEventListener("click", function(){
-    
+ 
     for(i=0; i<2; i++)
     {
       that.player_list[i].nbm = 0;
@@ -44,20 +58,20 @@ function player(ply, nbm, parent)
   this.ply_element = document.createElement("div");
   this.nbm_element = document.createElement("div");
   
-  this.ply_element.innerHTML = "Player: " + this.ply;
-  this.nbm_element.innerHTML = "CLICKS: " + this.nbm;
+  this.ply_element.innerHTML = this.ply;
+  this.nbm_element.innerHTML = "Clicks: " + this.nbm;
   
   parent.reset.addEventListener("click", function(){
     that.nbm = 0;
-    that.nbm_element.innerHTML = "CLICKS: " + that.nbm;
+    that.nbm_element.innerHTML = "Clicks: " + that.nbm;
   })
   
   this.player_element.addEventListener("click", function(){
     if(parent.inc_valid)
     {
       that.nbm++;
-      that.nbm_element.innerHTML = "CLICKS: " + that.nbm;
-      if(that.nbm>=5){
+      that.nbm_element.innerHTML = "Clicks: " + that.nbm;
+      if(that.nbm >= 5){
         parent.message.innerHTML = "WINNER IS : " + that.ply + "!";
         parent.reset.innerHTML = "<button>Reset</button>";
         parent.inc_valid = false;
@@ -69,4 +83,5 @@ function player(ply, nbm, parent)
   this.player_element.appendChild(this.nbm_element);
   document.body.appendChild(this.player_element);
 }
+
 var game = new game();
